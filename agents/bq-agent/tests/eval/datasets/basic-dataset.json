@@ -1,0 +1,88 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "fastapi_startup_500",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "FastAPI returns a 500 on startup after a dependency bump."
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "This matches BUG-1001 (FastAPI service returns 500 on startup after dependency bump), caused by upgrading Pydantic from v1 to v2 where models fail with PydanticUserError. Resolution: migrate class Config to model_config = ConfigDict(...), run bump-pydantic, call model_rebuild() on models with forward references, and pin pydantic>=2.5."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "postgres_too_many_connections",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Our service is failing with Postgres 'FATAL: sorry, too many clients already' under load."
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "This matches BUG-1004 (Postgres 'too many connections' from connection pool exhaustion). Resolution: configure a bounded connection pool (such as SQLAlchemy pool_size and max_overflow) sized across replicas or place PgBouncer in front of PostgreSQL."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "startup_keyerror_database_url",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Container crashes immediately on startup with KeyError: 'DATABASE_URL' when reading config."
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "This matches BUG-1002 (KeyError on startup reading configuration). Resolution: read configuration safely via os.environ.get or validated startup settings, and ensure DATABASE_URL is injected into the deployment environment."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "unrelated_sourdough_query",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How do I bake sourdough bread at high altitude so the loaf doesn't overproof?"
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "No relevant past engineering incidents were found in the internal bug database for this query."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

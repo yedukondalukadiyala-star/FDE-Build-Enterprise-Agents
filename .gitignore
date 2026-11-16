@@ -1,0 +1,50 @@
+# Environments & Secrets (NEVER commit .env or keys)
+.env
+.env.*
+!.env.example
+*.pem
+*-key.json
+credentials*.json
+my_env.tfvars
+
+# Python / uv / pytest / linters
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+.venv/
+.venv*/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ty/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Terraform & Infrastructure state
+.terraform/
+.terraform*/
+*.tfstate
+*.tfstate.*
+
+# ADK & agents-cli local state
+.adk/
+.google-agents-cli/
+.agents-cli-scripts/
+.agents-cli-original/
+deployment_metadata.json
+deployment_metadata.json.lock
+artifacts/traces/
+artifacts/grade_results/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json

@@ -1,0 +1,67 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "k8s_crashloop_port_mismatch",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Kubernetes pod enters CrashLoopBackOff because readiness probe fails on port 8080 while the app listens on another port."
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "This matches BUG-1007 (Kubernetes pod CrashLoopBackOff: container port mismatch). Resolution: align containerPort, the application's $PORT binding (0.0.0.0:$PORT), readiness/liveness probe ports, and Service targetPort."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "jwt_signature_expired_clock_skew",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Users intermittently get JWT 'signature has expired' errors immediately after token issuance across nodes."
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "This matches BUG-1009 (JWT 'signature has expired' after clock skew). Resolution: synchronize system clocks via NTP across nodes and configure clock-skew leeway (e.g. leeway=30s) during JWT verification."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eval_case_id": "unrelated_3d_printer_stepper",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How do I calibrate the E-steps on a 3D printer extruder stepper motor?"
+          }
+        ]
+      },
+      "reference": {
+        "response": {
+          "role": "model",
+          "parts": [
+            {
+              "text": "No relevant past engineering incidents were found in the internal bug database for this query."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
